@@ -239,7 +239,6 @@ build_dtbs() {
 ##
 
 export PATH="$TC_DIR/bin:$PREBUILTS_DIR/bin:$PATH"
-export LOCALVERSION="$(get_trees_rev)"
 
 $DO_CLEAN && {
     rm -rf out $MODULES_REPO
@@ -252,12 +251,12 @@ echo_i "Generating config..."
 m $DEFCONFIG
 m ./scripts/kconfig/merge_config.sh $DEFCONFIGS vendor/${TARGET}_GKI.config
 scripts/config --file out/.config \
-    --set-str LOCALVERSION "-$BRANCH" \
+    --set-str LOCALVERSION "-AOSPA-Vauxite-Marble" \
     -d LOCALVERSION_AUTO \
     -m CONFIG_KSU
 $NO_LTO && {
     scripts/config --file out/.config \
-        --set-str LOCALVERSION "-${BRANCH}-nolto" \
+        --set-str LOCALVERSION "-AOSPA-Vauxite-Marble-noLTO" \
         -d LTO_CLANG_FULL -e LTO_NONE
     echo_i "Disabled LTO!"
 }
