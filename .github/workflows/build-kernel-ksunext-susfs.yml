@@ -16,7 +16,7 @@ jobs:
           sudo sysctl -w vm.swappiness=100
       - uses: actions/checkout@v6
         with:
-          path: aospa-gki-kernel
+          path: aospa-vauxite-gki-kernel
       - name: Setup Python
         uses: actions/setup-python@v5 
         with:
@@ -29,7 +29,7 @@ jobs:
           sudo chmod a+rx /usr/local/bin/repo
       - name: Clone repo and sync
         run: |
-          repo init -u https://github.com/alex18101985/aospa-gki-kernel -b "$(git -C aospa-gki-kernel branch --show-current)" -m manifest.xml --depth=1
+          repo init -u https://github.com/alex18101985/aospa-vauxite-gki-kernel -b "$(git -C aospa-vauxite-gki-kernel branch --show-current)" -m manifest.xml --depth=1
           repo sync
           mkdir -p kernel_platform/device/xiaomi/marble-kernel/dtbs
       - name: Cache Clang
@@ -64,7 +64,7 @@ jobs:
           patch -p1 < 50_add_susfs_in_gki-android12-5.10.patch
       - name: Patch with custom configurations
         run: |
-          cp -rvf aospa-gki-kernel/android_kernel_xiaomi_sm8450/. kernel_platform/xiaomi/sm8450
+          cp -rvf aospa-vauxite-gki-kernel/android_kernel_xiaomi_sm8450/. kernel_platform/xiaomi/sm8450
           cd kernel_platform/xiaomi/sm8450
           patch -p1 < no-strict-error.patch
       - name: Build kernel
@@ -94,7 +94,7 @@ jobs:
           find . -type d -empty -delete
       - name: Generate release tag
         id: tag
-        run: echo "release_tag=AOSPA_GKI_KSUNext_SuSFS_$(date +'%Y.%m.%d_%H-%M')" >> "$GITHUB_OUTPUT"
+        run: echo "release_tag=AOSPA_Vauxite_GKI_KSUNext_SuSFS_$(date +'%Y.%m.%d_%H-%M')" >> "$GITHUB_OUTPUT"
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
