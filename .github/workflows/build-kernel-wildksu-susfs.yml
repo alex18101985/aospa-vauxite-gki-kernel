@@ -56,7 +56,7 @@ jobs:
           cd kernel_platform/xiaomi/sm8450
           rm -rf KernelSU kernelsu drivers/kernelsu
           curl -LSs "https://raw.githubusercontent.com/WildKernels/Wild_KSU/wild/kernel/setup.sh" | bash -s canary
-      - name: Include SuSFS
+      - name: Include SUSFS
         run: |
           HOME="$(pwd)"
           cp -r susfs4ksu/kernel_patches/* kernel_platform/xiaomi/sm8450
@@ -94,7 +94,7 @@ jobs:
           find . -type d -empty -delete
       - name: Generate release tag
         id: tag
-        run: echo "release_tag=AOSPA_Vauxite_GKI_WildKSU_SuSFS_$(date +'%Y.%m.%d_%H-%M')" >> "$GITHUB_OUTPUT"
+        run: echo "release_tag=AOSPA_Vauxite_GKI_WildKSU_SUSFS_$(date +'%Y.%m.%d_%H-%M')" >> "$GITHUB_OUTPUT"
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
