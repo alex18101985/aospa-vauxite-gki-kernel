@@ -117,13 +117,13 @@ jobs:
           files: |
             kernel.zip
       - name: Upload kernel artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: kernel
           path: AnyKernel3-marble/*
           compression-level: 9
       - name: Upload blobs artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: kernel-blobs
           path: AnyKernel3-pzqqt/*
