@@ -108,7 +108,7 @@ jobs:
           find . -type d -empty -delete
       - name: Generate release tag
         id: tag
-        run: echo "release_tag=AOSPA_Vauxite_GKI_WildKSU_SUSFS_$(date +'%Y.%m.%d_%H-%M')" >> "$GITHUB_OUTPUT"
+        run: echo "release_tag=AOSPA_Marble_GKI_WildKSU_SUSFS_$(date +'%Y.%m.%d_%H-%M')" >> "$GITHUB_OUTPUT"
       - name: Create release
         uses: softprops/action-gh-release@v2.5.3
         with:
